@@ -17,8 +17,8 @@ class Book:
     def setTitle(self, title):
         self.__title = title
 
-    def getAuthor(self, author):
+    def setAuthor(self, author):
         self.__author = author
 
-    def getISBN(self, isbn):
+    def setISBN(self, isbn):
         self.__ISBN = isbn
