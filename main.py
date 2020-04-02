@@ -1,7 +1,7 @@
 from Book import Book
 import csv
 
-boek1 = Book("Knibbel", 'John', '8324657')
+boek1 = Book("Knibbel", 'John', 27, 12434)
 
 print(boek1.getTitle())
 print("__Reserverings Systeem__")
