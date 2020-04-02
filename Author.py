@@ -8,4 +8,9 @@ class Author:
 
     def getAge(self):
         return self.__age
-    
+
+    def setNaam(self, name):
+        self.__naam = name
+
+    def getAge(self, age):
+        self.__age = age
