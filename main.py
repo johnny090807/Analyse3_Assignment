@@ -1,7 +1,5 @@
 from Book import Book
-
-
-boek1 = Book("Knibbel", "bla bla", 123, 213)
+import csv
 
 
 print("__Reserverings Systeem__")
@@ -32,5 +30,6 @@ while user == "password123":
         input("make a back up")
     elif librarianAction == "QUIT":
         user = "0"
+
 
 
