@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661631ab-4d6d-4341-8c03-ffaeda181825" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Analyse3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Analyse3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Book.py" beforeDir="false" afterPath="$PROJECT_DIR$/Book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,21 +23,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ZGVC15Lw832bZrxjl2QzTYOJOq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -91,5 +85,32 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1899" height="321" key="GridCell.Tab.0.bottom" timestamp="1585832418290">
+      <screen x="-1920" y="-126" width="1920" height="1160" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585832418290" />
+    <state width="1899" height="321" key="GridCell.Tab.0.center" timestamp="1585832418290">
+      <screen x="-1920" y="-126" width="1920" height="1160" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.center/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585832418290" />
+    <state width="1899" height="321" key="GridCell.Tab.0.left" timestamp="1585832418289">
+      <screen x="-1920" y="-126" width="1920" height="1160" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.left/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585832418289" />
+    <state width="1899" height="321" key="GridCell.Tab.0.right" timestamp="1585832418290">
+      <screen x="-1920" y="-126" width="1920" height="1160" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.right/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585832418290" />
+    <state x="369" y="110" key="SettingsEditor" timestamp="1585832242271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-1459" y="96" key="SettingsEditor/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585832056408" />
+    <state x="369" y="110" key="SettingsEditor/0.0.1536.824/-1920.-126.1920.1160@0.0.1536.824" timestamp="1585832242271" />
+    <state x="-1264" y="278" key="com.intellij.ide.util.TipDialog" timestamp="1585831942408">
+      <screen x="-1920" y="-126" width="1920" height="1160" />
+    </state>
+    <state x="-1264" y="278" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.-126.1920.1160@-1920.-126.1920.1160" timestamp="1585831942408" />
   </component>
 </project>
