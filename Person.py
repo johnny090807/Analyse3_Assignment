@@ -1,5 +1,6 @@
 class Person:
-    def __init__(self, firstName, lastName, username, password, admin = False):
+    def __init__(self, userId, firstName, lastName, username, password, admin=False):
+        self.__userId = userId
         self.__firstName = firstName
         self.__lastName = lastName
         self.__username = username
