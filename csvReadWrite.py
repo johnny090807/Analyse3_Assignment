@@ -1,4 +1,4 @@
-
+import csv
 #Write
 
 with open('employee_file2.csv', mode='w') as csv_file:

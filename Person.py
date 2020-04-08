@@ -22,6 +22,9 @@ class Person:
     def isAdmin(self):
         return self.__admin
 
+    def getUserId(self):
+        return self.__userId
+
     def setFirstName(self, firstName):
         self.__firstName = firstName
 

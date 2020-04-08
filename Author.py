@@ -3,7 +3,7 @@ class Author:
         self.__naam = naam
         self.__age = age
 
-    def getNaam(self):
+    def getName(self):
         return self.__naam
 
     def getAge(self):
@@ -12,5 +12,5 @@ class Author:
     def setNaam(self, name):
         self.__naam = name
 
-    def getAge(self, age):
+    def setAge(self, age):
         self.__age = age
