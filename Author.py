@@ -12,5 +12,5 @@ class Author:
     def setNaam(self, name):
         self.__naam = name
 
-    def getAge(self, age):
+    def setAge(self, age):
         self.__age = age
