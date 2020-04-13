@@ -80,4 +80,30 @@ class Catalog:
             userId = self.__Users[:-1].getUserId() + 1
         except:
             userId = 1
+
+        self.__Users.append(Person(userId, dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
         self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
+
+#login
+    answer = input("Do you have an account?(yes or no) ")
+if answer == 'yes' :
+   login = False
+   csvfile = open("Username password.csv","r")
+   reader = csv.reader('Username password.csv')
+   username = input("Player One Username: ")
+   password = input("Player One Password: ")
+   for row in reader:
+        if row[0]== username and row[1] == password:
+           login = True
+        else:
+           login = False
+   if login == False:
+      print("Incorrect. Game Over.")
+      exit()
+   else:
+      print("You are now logged in!")
+else:
+   print('Only Valid Usernames can play. Game Over.')
+   exit()
+
+
