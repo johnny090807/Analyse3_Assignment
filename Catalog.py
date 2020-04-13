@@ -5,6 +5,8 @@ class Catalog:
     def __init__(self):
         self.__Books = []
         self.__Users = []
+        self.fillCatalog()
+        self.fillUsers()
 
     def returnBooks(self):
         return self.__Books
@@ -37,3 +39,58 @@ class Catalog:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
                 self.__Users.append(Person(row["userId"], row["firstName"], row["lastName"], row["username"], row["password"], row["admin"]))
+
+    def addBook(self):
+        dict = [{
+            "thing": 'title',
+            "type": ""
+        },
+            {
+            "thing": 'authorName',
+            "type": ""
+        },
+            {
+            "thing": 'authorAge',
+            "type": ""
+        },
+            {
+            "thing": 'ISBN',
+            "type": ""
+        }]
+        for i in dict:
+            while i.get("type") == "":
+                try:
+                    i["type"] = str(input("What's the " + i.get("thing") + "? "))
+                except:
+                    print("something went wrong.")
+        print(dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type"))
+        self.__Books.append(Book(dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
+
+    def addPerson(self):
+        dict = [{
+            "thing": 'first name',
+            "type": ""
+        },
+            {
+                "thing": 'last name',
+                "type": ""
+            },
+            {
+                "thing": 'username',
+                "type": ""
+            },
+            {
+                "thing": 'password',
+                "type": ""
+            }]
+        for i in dict:
+            while i.get("type") == "":
+                try:
+                    i["type"] = str(input("What's the " + i.get("thing") + "? "))
+                except:
+                    print("something went wrong.")
+        try:
+            userId = self.__Users[:-1].getUserId() + 1
+        except:
+            userId = 1
+        self.__Users.append(Person(userId, dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
