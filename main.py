@@ -4,3 +4,5 @@ Catalog = Catalog()
 Catalog.printBooks()
 Catalog.printUsers()
 Catalog.login()
+Catalog.printUsers()
+

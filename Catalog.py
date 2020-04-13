@@ -7,6 +7,7 @@ class Catalog:
         self.__Users = []
         self.fillCatalog()
         self.fillUsers()
+        loggedInUser = None
 
     def returnBooks(self):
         return self.__Books
@@ -58,11 +59,14 @@ class Catalog:
                     except:
                         print("something went wrong.")
             count += 1
-        try:
-            userId = self.__Users[:-1].getUserId() + 1
-        except:
-            userId = 1
-        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
+        self.__Books.append(Book(array[0], array[1], array[2], array[3]))
+        with open('Catalog.csv', mode='w') as csv_file:
+            fieldnames = ['title', 'authorName', 'authorAge', 'ISBN']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for i in self.__Books:
+                writer.writerow({'title': i.getTitle(), 'authorName': i.getAuthor.getName(), 'authorAge': i.getAuthor.getName(), 'ISBN': i.getISBN()})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]
@@ -79,9 +83,7 @@ class Catalog:
             userId = self.__Users[:-1].getUserId() + 1
         except:
             userId = 1
-
-        self.__Users.append(Person(userId, dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
-        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3], array[4]))
 
 #login
     def login(self):
@@ -110,5 +112,4 @@ class Catalog:
                 print("You are now logged in.")
         else:
             self.addPerson()
-
 
