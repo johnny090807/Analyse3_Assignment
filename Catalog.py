@@ -7,6 +7,7 @@ class Catalog:
         self.__Users = []
         self.fillCatalog()
         self.fillUsers()
+        loggedInUser = None
 
     def returnBooks(self):
         return self.__Books
