@@ -93,7 +93,6 @@ class Catalog:
         if answer == 'yes' :
             login = False
             username = input("Username: ")
-            password = input("Password: ")
             while existingUser == False:
                 for i in self.__Users:
                     if i.getUsername() == username:
@@ -101,10 +100,14 @@ class Catalog:
                         return 
                     else:
                         existingUser = False
+                print("Username doesn't exist, please try again.")
+                input("Username:")
+            password = input("Password: ")
             if password == existingUser.getPassword():
-                    login = True
+                self.loggedInUser = existingUser
+                login = True
             else:
-                    login = False
+                login = False
             if login == False:
                 print("Incorrect login data.")
                 
