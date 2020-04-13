@@ -81,10 +81,7 @@ class Catalog:
             userId = 1
 
         self.__Users.append(Person(userId, dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
-
-def login():
-    str(input("Username: "))
-    str(input("Password: "))
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
 
 #login
     answer = input("Do you have an account?(yes or no) ")
@@ -108,5 +105,4 @@ else:
    print('Only Valid Usernames can play. Game Over.')
    exit()
 
-        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
 
