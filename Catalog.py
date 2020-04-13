@@ -84,25 +84,31 @@ class Catalog:
         self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
 
 #login
-    answer = input("Do you have an account?(yes or no) ")
-if answer == 'yes' :
-   login = False
-   csvfile = open("Username password.csv","r")
-   reader = csv.reader('Username password.csv')
-   username = input("Player One Username: ")
-   password = input("Player One Password: ")
-   for row in reader:
-        if row[0]== username and row[1] == password:
-           login = True
+    def login(self):
+        global existingUser
+        existingUser = False
+        answer = input("Do you have an account?(yes or no) ")
+        if answer == 'yes' :
+            login = False
+            username = input("Username: ")
+            password = input("Password: ")
+            while existingUser == False:
+                for i in self.__Users:
+                    if i.getUsername() == username:
+                        existingUser = i
+                        return 
+                    else:
+                        existingUser = False
+            if password == existingUser.getPassword():
+                    login = True
+            else:
+                    login = False
+            if login == False:
+                print("Incorrect login data.")
+                
+            else:
+                print("You are now logged in.")
         else:
-           login = False
-   if login == False:
-      print("Incorrect. Game Over.")
-      exit()
-   else:
-      print("You are now logged in!")
-else:
-   print('Only Valid Usernames can play. Game Over.')
-   exit()
+            self.addPerson()
 
 
