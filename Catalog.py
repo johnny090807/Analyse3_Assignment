@@ -69,11 +69,11 @@ class Catalog:
         PersonList = ['First name', 'last name', 'username', 'password']
         count = 0
         for i in array:
-                while i == "":
-                    try:
-                        i = str(input("What's the " + PersonList[count] + "? "))
-                    except:
-                        print("something went wrong.")
+            while i == "":
+                try:
+                    i = str(input("What's the " + PersonList[count] + "? "))
+                except:
+                    print("something went wrong.")
             count += 1
         try:
             userId = self.__Users[:-1].getUserId() + 1
