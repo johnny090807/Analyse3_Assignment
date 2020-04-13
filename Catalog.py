@@ -41,56 +41,42 @@ class Catalog:
                 self.__Users.append(Person(row["userId"], row["firstName"], row["lastName"], row["username"], row["password"], row["admin"]))
 
     def addBook(self):
-        dict = [{
-            "thing": 'title',
-            "type": ""
-        },
-            {
-            "thing": 'authorName',
-            "type": ""
-        },
-            {
-            "thing": 'authorAge',
-            "type": ""
-        },
-            {
-            "thing": 'ISBN',
-            "type": ""
-        }]
-        for i in dict:
-            while i.get("type") == "":
-                try:
-                    i["type"] = str(input("What's the " + i.get("thing") + "? "))
-                except:
-                    print("something went wrong.")
-        print(dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type"))
-        self.__Books.append(Book(dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
-
-    def addPerson(self):
-        dict = [{
-            "thing": 'first name',
-            "type": ""
-        },
-            {
-                "thing": 'last name',
-                "type": ""
-            },
-            {
-                "thing": 'username',
-                "type": ""
-            },
-            {
-                "thing": 'password',
-                "type": ""
-            }]
-        for i in dict:
-            while i.get("type") == "":
-                try:
-                    i["type"] = str(input("What's the " + i.get("thing") + "? "))
-                except:
-                    print("something went wrong.")
+        array = ["", "", 0, ""]
+        PersonList = ['title', 'author name', 'author age', 'ISBN']
+        count = 0
+        for i in array:
+            if type(i).__name__ == "str":
+                while i == "":
+                    try:
+                        i = str(input("What's the " + PersonList[count] + "? "))
+                    except:
+                        print("something went wrong.")
+            if type(i).__name__ == "int":
+                while i == 0:
+                    try:
+                        i = int(input("What's the " + PersonList[count] + "? "))
+                    except:
+                        print("something went wrong.")
+            count += 1
         try:
             userId = self.__Users[:-1].getUserId() + 1
         except:
             userId = 1
-        self.__Users.append(Person(userId, dict[0].get("type"), dict[1].get("type"), dict[2].get("type"), dict[3].get("type")))
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
+
+    def addPerson(self, admin = False):
+        array = ["", "", "", "", admin]
+        PersonList = ['First name', 'last name', 'username', 'password']
+        count = 0
+        for i in array:
+                while i == "":
+                    try:
+                        i = str(input("What's the " + PersonList[count] + "? "))
+                    except:
+                        print("something went wrong.")
+            count += 1
+        try:
+            userId = self.__Users[:-1].getUserId() + 1
+        except:
+            userId = 1
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3]))
