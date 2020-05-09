@@ -1,5 +1,5 @@
 from Book import Book
-from loanAdministration import reserveer_boek as reserveer_boek
+from loanAdministration import reserveer_boek
 import csv
 
 boek1 = Book("Knibbel", 'John', 27, 12434)
