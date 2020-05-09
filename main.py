@@ -1,8 +1,8 @@
 from Book import Book
-from loanAdministration import reserveer_boek
+from loanAdministration import reserveer_boek as Reserveer_Boek
 import csv
+from Catalog import Catalog
 
-boek1 = Book("Knibbel", 'John', 27, 12434)
 
 start_reservering = True
 start_reservering_gebruiker = True
@@ -77,6 +77,7 @@ while start_reservering or start_keuze == "0":
                                                   "\n5) Filter boeken op ISBN"
                                                   " \n6) Reserveer een boek \n7) Logout")
 # 2-5 kunnen weg
+
                     while start_keuze_gebruiker == "1":
                         if start_keuze_gebruiker == "1":
                             print("***** Bekijk boeken *****")
@@ -123,7 +124,7 @@ while start_reservering or start_keuze == "0":
                                 print("titel bestaat niet")
                                 start_keuze_gebruiker = input("5) Zoek opnieuw \n0) Terug naar menu")
                     while start_keuze_gebruiker == "6":
-                        loanAdministration.reserveer_boek()
+                        Reserveer_Boek()
                     if start_keuze_gebruiker == "7":
                         start_reservering_gebruiker = False
     # Menu als je ingelogd bent als admin
