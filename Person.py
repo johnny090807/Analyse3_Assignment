@@ -1,3 +1,7 @@
+#Person:
+#Backup moet nog gedaan worden.
+#Check voor alles wat toegevoegd/verwijderd wordt of dat het lokaal EN in de csv gebeurd.
+#Zoekfunctie moet nog gemaakt worden.
 class Person:
     def __init__(self, firstName, lastName, username, password, admin = False):
         self.__firstName = firstName
