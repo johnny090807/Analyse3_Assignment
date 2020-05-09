@@ -1,6 +1,10 @@
 import csv
 from Book import Book
 from Person import Person
+#Catalog:
+#- Inlogfunctie maken
+#- Persoon met rechten toekunnen voegen
+#- Persoon zonder rechten toevoegen
 class Catalog:
     def __init__(self):
         self.__Books = []
@@ -69,6 +73,23 @@ class Catalog:
                 writer.writerow({'title': i.getTitle(), 'authorName': i.getAuthor.getName(), 'authorAge': i.getAuthor.getName(), 'ISBN': i.getISBN()})
 
     def addPerson(self, admin = False):
+        array = ["", "", "", "", admin]
+        PersonList = ['First name', 'last name', 'username', 'password']
+        count = 0
+        for i in array:
+            while i == "":
+                try:
+                    i = str(input("What's the " + PersonList[count] + "? "))
+                except:
+                    print("something went wrong.")
+            count += 1
+        try:
+            userId = self.__Users[:-1].getUserId() + 1
+        except:
+            userId = 1
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3], array[4]))
+
+    def addPersonWithPermissions(self, admin=True):
         array = ["", "", "", "", admin]
         PersonList = ['First name', 'last name', 'username', 'password']
         count = 0
