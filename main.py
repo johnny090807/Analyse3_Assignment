@@ -8,7 +8,7 @@ while start_reservering or start_keuze == "0":
     # Het menu als je niet bent ingelogd
     print("***** Reserverings systeem *****")
     start_keuze = input("1) Bekijk boeken \n2) Filter boeken op titel \n3) Filter boeken op auteursnaam"
-                  " \n4) Filter boeken op auteurs leeftijd \n5) Filter boeken op ISBN \n6) Login \n7) Exit")
+                  " \n4) Filter boeken op auteurs leeftijd \n5) Filter boeken op ISBN \n6) Login \n7) Exit\n")
 
     while start_keuze == "1":
         if start_keuze == "1":
