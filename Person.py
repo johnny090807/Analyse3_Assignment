@@ -1,4 +1,3 @@
-#Person:
 #Backup moet nog gedaan worden.
 #Check voor alles wat toegevoegd/verwijderd wordt of dat het lokaal EN in de csv gebeurd.
 #Zoekfunctie moet nog gemaakt worden.
