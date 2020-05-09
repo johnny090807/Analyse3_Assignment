@@ -1,15 +1,9 @@
 from Book import Book
+from loanAdministration import reserveer_boek as reserveer_boek
 import csv
 
 boek1 = Book("Knibbel", 'John', 27, 12434)
 
-<<<<<<< Updated upstream
-print(boek1.getTitle())
-print("__Reserverings Systeem__")
-print("__typ 1 om in te loggen__")
-print("__typ 2 om in te loggen__")
-print("__typ 3 om in te loggen__")
-=======
 start_reservering = True
 start_reservering_gebruiker = True
 start_keuze = None
@@ -129,16 +123,7 @@ while start_reservering or start_keuze == "0":
                                 print("titel bestaat niet")
                                 start_keuze_gebruiker = input("5) Zoek opnieuw \n0) Terug naar menu")
                     while start_keuze_gebruiker == "6":
-                        if start_keuze_gebruiker == "6":
-                            print("***** Reserveer een boek *****")
-                            titel_boek = input("Zoek boek op titel, auteur, leeftijd auteur of ISBN:")
-                            if titel_boek == "naam":
-                                print("naam van boek")
-                                reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
-                                start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
-                            elif titel_boek == "onbekend":
-                                print("titel bestaat niet")
-                                start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
+                        loanAdministration.reserveer_boek()
                     if start_keuze_gebruiker == "7":
                         start_reservering_gebruiker = False
     # Menu als je ingelogd bent als admin
@@ -220,4 +205,3 @@ while start_reservering or start_keuze == "0":
                 print("Vul iets in.")
     if start_keuze == "7":
         start_reservering = False
->>>>>>> Stashed changes
