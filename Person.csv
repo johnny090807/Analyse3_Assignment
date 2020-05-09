@@ -1,3 +1,1 @@
-userId,firstName,lastName,username,password,admin
-1,John,Klees,johnnyboi,geheim,1
-2,jahn,klaas,kleessie,geheim,0
+firstName,lastName,username,password,adminJohn,Klees,johnnyboi,geheim,1jahn,klaas,kleessie,geheim,0
