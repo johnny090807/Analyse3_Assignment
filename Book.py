@@ -22,3 +22,6 @@ class Book:
 
     def setISBN(self, isbn):
         self.__ISBN = isbn
+
+    def printBook(self):
+        print(self.__title + "\n" + self.__author + "\n" + self.__ISBN + "\n")
