@@ -11,7 +11,7 @@ class LoanAdministration:
 
     def getLoanId(self):
         return self.__loanId
-
+        
 if reservation is made:
     loanid = person.loaneditems
     Loanitem.book
