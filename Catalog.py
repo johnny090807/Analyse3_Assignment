@@ -43,7 +43,7 @@ class Catalog:
         with open('Person.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Users.append(Person(row["userId"], row["firstName"], row["lastName"], row["username"], row["password"], row["admin"]))
+                self.__Users.append(Person(row["firstName"], row["lastName"], row["username"], row["password"], row["admin"]))
 
     def addBook(self):
         array = ["", "", 0, ""]
@@ -87,7 +87,15 @@ class Catalog:
             userId = self.__Users[:-1].getUserId() + 1
         except:
             userId = 1
-        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3], array[4]))
+        self.__Users.append(Person(array[0], array[1], array[2], array[3], array[4]))
+        print
+        with open('Person.csv', mode='w') as csv_file:
+            fieldnames = ['firstName', 'lastName', 'username', 'password', 'admin']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for i in self.__Users:
+                writer.writerow({'firstName': i.getFirstName(), 'lastName': i.getLastName(), 'username': i.getUsername(), 'password': i.getPassword(), 'admin': i.isAdmin()})
 
     def addPersonWithPermissions(self, admin=True):
         array = ["", "", "", "", admin]
@@ -109,31 +117,74 @@ class Catalog:
 #login
     def login(self):
         global existingUser
-        existingUser = False
+        existingUser = None
         answer = input("Do you have an account?(yes or no) ")
-        if answer == 'yes' :
+        if answer == 'yes':
             login = False
             username = input("Username: ")
-            while existingUser == False:
+            while existingUser == None:
                 for i in self.__Users:
                     if i.getUsername() == username:
                         existingUser = i
-                        return 
+                        break
                     else:
-                        existingUser = False
-                print("Username doesn't exist, please try again.")
-                input("Username:")
+                        existingUser = None
+                    username = input("Username not found, try again: ")
             password = input("Password: ")
-            if password == existingUser.getPassword():
-                self.loggedInUser = existingUser
-                login = True
-            else:
-                login = False
-            if login == False:
-                print("Incorrect login data.")
-                
-            else:
-                print("You are now logged in.")
-        else:
+            loggedIn = False
+            while not loggedIn:
+                if password == existingUser.getPassword():
+                    self.loggedInUser = existingUser
+                    loggedIn = True
+                else:
+                    password = input("Password was incorrect, try again:")
+        elif answer == "no":
             self.addPerson()
+        else:
+            self.login()
 
+    def filter(self):
+        searchTypes = ['Title', 'Author name', 'Author age', 'ISBN']
+        for i in range(len(searchTypes)):
+            print("Press", i + 1, "to search for", searchTypes[i])
+        inputSearch = ""
+        while inputSearch == "" or inputSearch == "Try again":
+            inputSearch = input("")
+            if inputSearch == "1":
+                searchBook = input("Which book are you looking for by title? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getTitle():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "2":
+                searchBook = input("Which book are you looking for by author name? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getAuthor().getName():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "3":
+                searchBook = input("Which book are you looking for by author age? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook == str(i.getAuthor().getAge()):
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "4":
+                searchBook = input("Which book are you looking for by ISBN? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getISBN():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            else:
+                inputSearch = input("Try again: ")

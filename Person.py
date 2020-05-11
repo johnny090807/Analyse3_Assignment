@@ -2,8 +2,7 @@
 #Check voor alles wat toegevoegd/verwijderd wordt of dat het lokaal EN in de csv gebeurd.
 #Zoekfunctie moet nog gemaakt worden.
 class Person:
-    def __init__(self, userId, firstName, lastName, username, password, admin=False):
-        self.__userId = userId
+    def __init__(self, firstName, lastName, username, password, admin=False):
         self.__firstName = firstName
         self.__lastName = lastName
         self.__username = username
