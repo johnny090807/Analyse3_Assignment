@@ -142,5 +142,49 @@ class Catalog:
             self.addPerson()
         else:
             self.login()
+
     def filter(self):
-        print("nice")
+        searchTypes = ['Title', 'Author name', 'Author age', 'ISBN']
+        for i in range(len(searchTypes)):
+            print("Press", i + 1, "to search for", searchTypes[i])
+        inputSearch = ""
+        while inputSearch == "" or inputSearch == "Try again":
+            inputSearch = input("")
+            if inputSearch == "1":
+                searchBook = input("Which book are you looking for by title? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getTitle():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "2":
+                searchBook = input("Which book are you looking for by author name? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getAuthor().getName():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "3":
+                searchBook = input("Which book are you looking for by author age? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook == str(i.getAuthor().getAge()):
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            elif inputSearch == "4":
+                searchBook = input("Which book are you looking for by ISBN? ")
+                count = 0
+                for i in self.__Books:
+                    if searchBook in i.getISBN():
+                        print(i)
+                        count += 1
+                if count == 0:
+                    print("Nothing found")
+            else:
+                inputSearch = input("Try again: ")

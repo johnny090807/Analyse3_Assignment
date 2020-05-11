@@ -22,3 +22,6 @@ class Book:
 
     def setISBN(self, isbn):
         self.__ISBN = isbn
+
+    def __str__(self):
+        return self.__title + " " + self.__author.getName() + " " + self.__author.getName() + " " + self.__ISBN
