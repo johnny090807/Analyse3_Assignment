@@ -119,7 +119,7 @@ class Catalog:
         global existingUser
         existingUser = None
         answer = input("Do you have an account?(yes or no) ")
-        if answer == 'yes' :
+        if answer == 'yes':
             login = False
             username = input("Username: ")
             while existingUser == None:
@@ -140,6 +140,7 @@ class Catalog:
                     password = input("Password was incorrect, try again:")
         elif answer == "no":
             self.addPerson()
-
-    # def filter(self):
-
+        else:
+            self.login()
+    def filter(self):
+        print("nice")
