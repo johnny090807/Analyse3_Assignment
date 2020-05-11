@@ -1,13 +1,16 @@
+import csv
 #Backup moet nog gedaan worden.
 #Check voor alles wat toegevoegd/verwijderd wordt of dat het lokaal EN in de csv gebeurd.
 class Person:
-    def __init__(self, firstName, lastName, username, password, admin=False):
+    def __init__(self, userId, firstName, lastName, username, password, admin=False):
+        self.__userId = userId
         self.__firstName = firstName
         self.__lastName = lastName
         self.__username = username
         self.__password = password
         self.__admin = admin
         self.__loanedBooks = []
+        self.fillLoans()
 
     def getFirstName(self):
         return self.__firstName
@@ -44,4 +47,11 @@ class Person:
     
     def addBookToLoaned(self, persoonId, loanId):
         self.__loanedBooks.append(loanId)
+
+    def fillLoans(self):
+        with open('LoanAdministration.csv', mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                if row['persoonId'] == self.__userId:
+                    self.__loanedBooks.append(row['loanId'])
 
