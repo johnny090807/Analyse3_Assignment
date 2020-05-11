@@ -1,10 +1,6 @@
 import csv
 from Book import Book
 from Person import Person
-#Catalog:
-#- Inlogfunctie maken
-#- Persoon met rechten toekunnen voegen
-#- Persoon zonder rechten toevoegen
 class Catalog:
     def __init__(self):
         self.__Books = []
