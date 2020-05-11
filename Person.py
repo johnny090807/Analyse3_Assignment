@@ -1,6 +1,5 @@
 #Backup moet nog gedaan worden.
 #Check voor alles wat toegevoegd/verwijderd wordt of dat het lokaal EN in de csv gebeurd.
-#Zoekfunctie moet nog gemaakt worden.
 class Person:
     def __init__(self, firstName, lastName, username, password, admin=False):
         self.__firstName = firstName
@@ -8,6 +7,7 @@ class Person:
         self.__username = username
         self.__password = password
         self.__admin = admin
+        self.__loanedBooks = []
 
     def getFirstName(self):
         return self.__firstName
@@ -41,3 +41,7 @@ class Person:
 
     def changeAdmin(self, admin):
         self.__admin = admin
+    
+    def addBookToLoaned(self, persoonId, loanId):
+        self.__loanedBooks.append(loanId)
+
