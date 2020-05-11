@@ -10,23 +10,23 @@ class LoanAdministration:
         self.__persoonId = persoonId
         self.__loanId = loanId
 
+    books = catalog.returnBooks()
+    
     def getPersoonId(self):
         return self.__persoonId
 
     def getLoanId(self):
         return self.__loanId
 
-books = catalog.returnBooks()
 
-def reserveer_boek():
-    print("***** Reserveer een boek *****")
-    titel_boek = input("Zoek boek op titel of ISBN:")
-    for i in books:
-        if titel_boek == i.getTitle or titel_boek == i.getISBN:
-            print(i.printBook)
-            reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
-            start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
-        else:
-            print("titel bestaat niet")
-            start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
-        
+    def reserveer_boek():
+        print("***** Reserveer een boek *****")
+        titel_boek = input("Zoek boek op titel of ISBN:")
+        for i in books:
+            if titel_boek == i.getTitle or titel_boek == i.getISBN:
+                print(i.printBook)
+                reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
+                start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
+            else:
+                print("titel bestaat niet")
+                start_keuze_gebruiker = input("6) Zoek opnieuw \n0) Terug naar menu")
