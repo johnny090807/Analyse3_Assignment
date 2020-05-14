@@ -45,8 +45,16 @@ class Catalog:
                 print(i)
                 reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
                 if reserveren_boek == "1":
-                    if books[0].aantal > 0:
-                        
+                    if books[0].getAantal > 0:
+                        i.setAantal = i.getAantal - 1
+                        with open('Catalog.csv', mode='w') as csv_file:
+                            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
+                            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+                            writer.writeheader()
+                            for i in self.__Books:
+                                writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
+                                                'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
                         #Add the book to Person localy
                         loggedinUser.addBookLoan(books[0].getBookId)
                         #Add the book to Person in csv
