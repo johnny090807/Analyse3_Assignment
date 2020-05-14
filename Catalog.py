@@ -80,8 +80,8 @@ class Catalog:
                                            row["password"], row["admin"]))
 
     def addBook(self):
-        array = ["", "", 0, ""]
-        PersonList = ['title', 'author name', 'author age', 'ISBN']
+        array = ["", "", 0, "", 0]
+        PersonList = ['title', 'author name', 'author age', 'ISBN', 'aantal']
         count = 0
         for i in range(len(array)):
             if type(array[i]).__name__ == "str":
@@ -101,15 +101,15 @@ class Catalog:
             bookId = int(self.__Books[-1].getBookId()) + 1
         except:
             bookId = 0
-        self.__Books.append(Book(bookId, array[0], array[1], array[2], array[3]))
+        self.__Books.append(Book(bookId, array[0], array[1], array[2], array[3], array[4]))
         with open('Catalog.csv', mode='w') as csv_file:
-            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN']
+            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             writer.writeheader()
             for i in self.__Books:
                 writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal})
+                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]
