@@ -11,3 +11,4 @@ class LoanAdministration:
 
     def getLoanId(self):
         return self.__loanId
+
