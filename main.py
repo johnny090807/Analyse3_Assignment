@@ -6,6 +6,7 @@ catalog.printUsers()
 start_reservering = True
 start_reservering_gebruiker = True
 start_keuze = None
+start_keuze_gebruiker = "5"
 while start_reservering or start_keuze == "0":
     # Het menu als je niet bent ingelogd
     print("***** Reserverings systeem *****")
@@ -31,23 +32,24 @@ while start_reservering or start_keuze == "0":
     if not bool(catalog.loggedInUser.isAdmin()):
         while start_reservering_gebruiker:
             print("***** Reserverings systeem *****")
-            print("***** Welkom " + catalog.loggedInUser.getFirstName() + " *****")
-            start_keuze_gebruiker = input("1) Bekijk boeken \n2) Filter boeken"
-                                          " \n3) Reserveer een boek \n4) Logout\n")
-            while start_keuze_gebruiker == "1":
-                print("***** Bekijk boeken *****")
-                print("lijst met boeken")
-                start_keuze_gebruiker = input("Press enter to continue")
-            while start_keuze_gebruiker == "2":
-                print("***** Filter boeken *****")
-                catalog.filter()
-            while start_keuze_gebruiker == "3":
-                print("***** Reserveer een boek *****")
-            #     Boek moet hier nog gereserveerd kunnen worden
-            if start_keuze_gebruiker == "4":
-                catalog.loggedInUser = None
-                start_keuze = "0"
-                start_reservering_gebruiker = False
+            while start_keuze_gebruiker == "5":
+                print("***** Welkom " + catalog.loggedInUser.getFirstName() + " *****")
+                start_keuze_gebruiker = input("1) Bekijk boeken \n2) Filter boeken"
+                                            " \n3) Reserveer een boek \n4) Logout \n")
+                while start_keuze_gebruiker == "1":
+                    print("***** Bekijk boeken *****")
+                    print("lijst met boeken")
+                    start_keuze_gebruiker = input("Press enter to continue")
+                while start_keuze_gebruiker == "2":
+                    print("***** Filter boeken *****")
+                    catalog.filter()
+                while start_keuze_gebruiker == "3":
+                    print("***** Reserveer een boek *****")
+                    catalog.reserveer_boek(catalog.loggedInUser, catalog.loggedInUser.persoonId, catalog.loggedInUser.loanId)
+                if start_keuze_gebruiker == "4":
+                    catalog.loggedInUser = None
+                    start_keuze = "0"
+                    start_reservering_gebruiker = False
     # Menu als je ingelogd bent als admin
     elif catalog.loggedInUser.isAdmin():
         while start_reservering_gebruiker:
@@ -71,7 +73,7 @@ while start_reservering or start_keuze == "0":
                 print("***** Voeg een boek toe *****")
                 catalog.addBook()
                 start_keuze = input("Press enter to continue.")
-    # nieuwe gebruiker toevoegen
+            # nieuwe gebruiker toevoegen
             while start_keuze_gebruiker == "4":
                 print("***** Voeg een nieuwe gerbuiker toe *****")
                 catalog.addPerson()
