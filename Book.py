@@ -30,7 +30,7 @@ class Book:
 
     def getAantal(self):
         return self.__aantal
-    
+
     def setAantal(self, aantal):
         self.__aantal = aantal
 

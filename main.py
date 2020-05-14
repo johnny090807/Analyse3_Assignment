@@ -66,31 +66,31 @@ while start_reservering or start_keuze == "0":
                 while start_keuze == "2":
                     print("***** Filter boeken  *****")
                     catalog.filter()
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                 # nieuw boek toevoegen
                 while start_keuze_gebruiker == "3":
                     print("***** Voeg een boek toe *****")
                     catalog.addBook()
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                 # nieuwe gebruiker toevoegen
                 while start_keuze_gebruiker == "4":
                     print("***** Voeg een nieuwe gerbuiker toe *****")
                     catalog.addPerson()
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                 while start_keuze_gebruiker == "5":
                     print("***** Voeg een nieuwe gerbuiker toe *****")
                     catalog.addPerson(True)
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                 if start_keuze_gebruiker == "6":
                     catalog.loggedInUser = None
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                     start_reservering_gebruiker = False
                 if start_keuze_gebruiker == "7":
                     catalog.loggedInUser = None
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
                     start_reservering_gebruiker = False
                 if start_keuze_gebruiker == "8":
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = input("Press enter to continue.")
 
         elif catalog.loggedInUser is None:
             print("Vul iets in.")
