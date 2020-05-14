@@ -29,7 +29,7 @@ class LoanAdministration:
                     #Add the book to Person localy
                     loggedinUser.addBookToLoaned(i.getLoanId)
                     #Add the book to Person in csv
-                    with open(r'loanAdministration.csv', 'a') as addLoan:
+                    with open(r'LoanAdministration.csv', 'a') as addLoan:
                         writer = csv.writer(addLoan)
                         writer.writerow({'persoonId': persoonId, 'loanId': loanId})
                     print("Het boek is toegevoegd aan de geleende boeken")
