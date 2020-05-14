@@ -7,12 +7,12 @@ import csv
 
 
 class LoanAdministration:
-    def __init__(self, persoonId, loanId):
-        self.__persoonId = persoonId
+    def __init__(self, userId, loanId):
+        self.__userId = userId
         self.__loanId = loanId
 
-    def getPersoonId(self):
-        return self.__persoonId
+    def getUserId(self):
+        return self.__userId
 
     def getLoanId(self):
         return self.__loanId

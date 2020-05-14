@@ -30,7 +30,7 @@ class Catalog:
 
     def printUsers(self):
         for user in self.__Users:
-            print(user.getUserId(), user.getFirstName(), "|", user.getLastName())
+            print(user)
 
     def fillAdministration(self):
         with open('LoanAdministration.csv', mode='r') as csv_file:

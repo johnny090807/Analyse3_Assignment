@@ -52,6 +52,9 @@ class Person:
     def addBookLoan(self, bookId):
         self.__bookLoans.append(bookId)
 
+    def __str__(self):
+        return self.__userId + "\n" + self.__firstName + "\n" + self.__lastName + "\n" + self.__username + "\n" + self.__password + "\n" + self.__admin + "\n"
+
     def fillBookLoans(self):
         with open('LoanAdministration.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
