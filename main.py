@@ -1,7 +1,7 @@
 from Catalog import Catalog
 catalog = Catalog()
 # Dit is hoe je een loanId kan pakken van een user
-#user = catalog.returnUsers()[1].getBookLoans()[0].getLoanId()
+# user = catalog.returnUsers()[1].getBookLoans()[0].getUserId()
 
 start_reservering = True
 start_reservering_gebruiker = True
