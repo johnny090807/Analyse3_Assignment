@@ -1,10 +1,13 @@
 import csv
 from Book import Book
 from Person import Person
+from loanAdministration import LoanAdministration
+
 class Catalog:
     def __init__(self):
         self.__Books = []
         self.__Users = []
+        self.__Administration = []
         self.fillCatalog()
         self.fillUsers()
         self.loggedInUser = None
@@ -23,89 +26,96 @@ class Catalog:
 
     def printBooks(self):
         for book in self.__Books:
-            print(book.getTitle(), "|", book.getAuthor().getName(), "|", book.getAuthor().getAge(), "|", book.getISBN())
+            print(book)
 
     def printUsers(self):
         for user in self.__Users:
             print(user.getUserId(), user.getFirstName(), "|", user.getLastName())
 
+    def fillAdministration(self):
+        with open('LoanAdministration.csv', mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                self.__Administration.append(LoanAdministration(row['userId'], row['loanId']))
+
     def fillCatalog(self):
         with open('Catalog.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Books.append(Book(row["title"], row["authorName"], row["authorAge"], row["ISBN"]))
+                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"]))
 
     def fillUsers(self):
         with open('Person.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Users.append(Person(row["firstName"], row["lastName"], row["username"], row["password"], row["admin"]))
+                self.__Users.append(Person(row["userId"], row["firstName"], row["lastName"], row["username"],
+                                           row["password"], row["admin"]))
 
     def addBook(self):
         array = ["", "", 0, ""]
         PersonList = ['title', 'author name', 'author age', 'ISBN']
         count = 0
-        for i in array:
-            if type(i).__name__ == "str":
-                while i == "":
+        for i in range(len(array)):
+            if type(array[i]).__name__ == "str":
+                while array[i] == "":
                     try:
-                        i = str(input("What's the " + PersonList[count] + "? "))
+                        array[i] = str(input("What's the " + PersonList[count] + "? "))
                     except:
                         print("something went wrong.")
-            if type(i).__name__ == "int":
-                while i == 0:
+            if type(array[i]).__name__ == "int":
+                while array[i] == 0:
                     try:
-                        i = int(input("What's the " + PersonList[count] + "? "))
+                        array[i] = int(input("What's the " + PersonList[count] + "? "))
                     except:
                         print("something went wrong.")
             count += 1
-        self.__Books.append(Book(array[0], array[1], array[2], array[3]))
+        try:
+            bookId = int(self.__Books[-1].getBookId()) + 1
+        except:
+            bookId = 0
+        self.__Books.append(Book(bookId, array[0], array[1], array[2], array[3]))
         with open('Catalog.csv', mode='w') as csv_file:
-            fieldnames = ['title', 'authorName', 'authorAge', 'ISBN']
+            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             writer.writeheader()
             for i in self.__Books:
-                writer.writerow({'title': i.getTitle(), 'authorName': i.getAuthor.getName(), 'authorAge': i.getAuthor.getName(), 'ISBN': i.getISBN()})
+                writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
+                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN()})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]
         PersonList = ['First name', 'last name', 'username', 'password']
-        count = 0
-        for i in array:
-            while i == "":
+        for i in range(len(array)):
+            while array[i] == "":
                 try:
-                    i = str(input("What's the " + PersonList[count] + "? "))
+                    array[i] = str(input("What's the " + PersonList[i] + "? "))
                 except:
                     print("something went wrong.")
-            count += 1
         try:
-            userId = self.__Users[:-1].getUserId() + 1
+            userId = int(self.__Users[-1].getUserId()) + 1
         except:
-            userId = 1
-        self.__Users.append(Person(array[0], array[1], array[2], array[3], array[4]))
-        print
+            userId = 0
+        self.__Users.append(Person(userId, array[0], array[1], array[2], array[3], array[4]))
         with open('Person.csv', mode='w') as csv_file:
-            fieldnames = ['firstName', 'lastName', 'username', 'password', 'admin']
+            fieldnames = ['userId', 'firstName', 'lastName', 'username', 'password', 'admin']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             writer.writeheader()
             for i in self.__Users:
-                writer.writerow({'firstName': i.getFirstName(), 'lastName': i.getLastName(), 'username': i.getUsername(), 'password': i.getPassword(), 'admin': i.isAdmin()})
+                writer.writerow({'userId': i.getUserId(), 'firstName': i.getFirstName(), 'lastName': i.getLastName(), 'username': i.getUsername(), 'password': i.getPassword(), 'admin': i.isAdmin()})
 
     def addPersonWithPermissions(self, admin=True):
         array = ["", "", "", "", admin]
         PersonList = ['First name', 'last name', 'username', 'password']
-        count = 0
-        for i in array:
-            while i == "":
+        for i in range(len(array)):
+            while array[i] == "":
                 try:
-                    i = str(input("What's the " + PersonList[count] + "? "))
+                    array[i] = str(input("What's the " + PersonList[i] + "? "))
                 except:
                     print("something went wrong.")
-            count += 1
         try:
-            userId = self.__Users[:-1].getUserId() + 1
+            userId = int(self.__Users[:-1].getUserId()) + 1
         except:
             userId = 1
         self.__Users.append(Person(userId, array[0], array[1], array[2], array[3], array[4]))
@@ -125,6 +135,7 @@ class Catalog:
                         break
                     else:
                         existingUser = None
+                if existingUser == None:
                     username = input("Username not found, try again: ")
             password = input("Password: ")
             loggedIn = False
