@@ -1,7 +1,5 @@
-
 from loanAdministration import LoanAdministration
 import csv
-nice = 0
 
 class Person:
     def __init__(self, userId, firstName, lastName, username, password, admin=False):
