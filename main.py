@@ -75,7 +75,7 @@ while start_reservering or start_keuze == "0":
                         print("***** Voeg een boek toe *****")
                         catalog.addBook()
                         start_keuze = input("Press enter to continue.")
-# nieuwe gebruiker toevoegen
+                    # nieuwe gebruiker toevoegen
                     while start_keuze_gebruiker == "4":
                         print("***** Voeg een nieuwe gerbuiker toe *****")
                         catalog.addPerson()
