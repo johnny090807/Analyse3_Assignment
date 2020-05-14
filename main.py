@@ -1,5 +1,5 @@
 from Book import Book
-from loanAdministration import reserveer_boek as Reserveer_Boek
+from loanAdministration import LoanAdministration
 import csv
 from Catalog import Catalog
 
