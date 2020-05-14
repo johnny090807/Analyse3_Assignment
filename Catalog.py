@@ -32,7 +32,7 @@ class Catalog:
         for user in self.__Users:
             print(user)
 
-    def reserveer_boek(self, loggedinUser, persoonId, loanId):
+    def reserveer_boek(self, loggedinUser, userId, loanId):
         titel_boek = input("Zoek boek op titel of ISBN:")
         for i in self.__Books:
             if titel_boek == i.getTitle or titel_boek == i.getISBN:
@@ -44,7 +44,7 @@ class Catalog:
                     #Add the book to Person in csv
                     with open(r'LoanAdministration.csv', 'a') as addLoan:
                         writer = csv.writer(addLoan)
-                        writer.writerow({'persoonId': persoonId, 'loanId': loanId})
+                        writer.writerow({'userId': userId, 'loanId': loanId})
                     print("Het boek is toegevoegd aan uw geleende boeken")
                 else:
                    start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
