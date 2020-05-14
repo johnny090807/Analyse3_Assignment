@@ -32,19 +32,26 @@ class Catalog:
         for user in self.__Users:
             print(user)
 
-    def reserveer_boek(self, loggedinUser, persoonId, loanId):
-        titel_boek = input("Zoek boek op titel of ISBN:")
+    def reserveer_boek(self, loggedinUser, userId):
+        books = self.filter()
+        try:
+            while len(books) > 1 or len(books) == 0:
+                books = self.filter()
+        except:
+            books = self.filter()
+
         for i in self.__Books:
             if titel_boek == i.getTitle or titel_boek == i.getISBN:
                 print(i)
                 reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
                 if reserveren_boek == "1":
+                    loanId = 0
                     #Add the book to Person localy
                     loggedinUser.addBookToLoaned(i.getLoanId)
                     #Add the book to Person in csv
                     with open(r'LoanAdministration.csv', 'a') as addLoan:
                         writer = csv.writer(addLoan)
-                        writer.writerow({'persoonId': persoonId, 'loanId': loanId})
+                        writer.writerow({'userId': userId, 'loanId': loanId})
                     print("Het boek is toegevoegd aan uw geleende boeken")
                 else:
                    start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
@@ -171,101 +178,68 @@ class Catalog:
             self.login()
 
     def filter(self):
+        foundBooks = []
         searchTypes = ['Title', 'Author name', 'Author age', 'ISBN']
         for i in range(len(searchTypes)):
             print("Press", i + 1, "to search for", searchTypes[i])
         print("Press 5 to go back")
-        inputSearch = ""
-        while inputSearch == "" or inputSearch == "Try again":
-            inputSearch = input("")
-            if inputSearch == "1":
-                searchBook = input("Which book are you looking for by title? ")
+        choice = input("")
+        running = True
+        while running:
+            if choice == "1":
+                searchBook = input("Which book are you looking for by title? enter nothing to exit. ")
                 count = 0
+                if searchBook == "":
+                    break
                 for i in self.__Books:
                     if searchBook in i.getTitle():
                         print(i)
+                        foundBooks.append(i)
                         count += 1
-                        
-                        correctInput = False
-                        while not correctInput:
-                            inputSearch = input("Do you want to search again? (yes or no): ")
-                            if inputSearch == "yes":
-                                inputSearch = ""
-                                correctInput = not correctInput
-                            elif inputSearch == "no":
-                                inputSearch = "5"
-                                correctInput = not correctInput
-                            else:
-                                print("Wrong input")
                 if count == 0:
                     print("Nothing found")
-                    inputSearch = ""
-            elif inputSearch == "2":
-                searchBook = input("Which book are you looking for by author name? ")
+                return foundBooks
+            elif choice == "2":
+                searchBook = input("Which book are you looking for by author name? enter nothing to exit. ")
                 count = 0
+                if searchBook == "":
+                    break
                 for i in self.__Books:
                     if searchBook in i.getAuthor().getName():
                         print(i)
+                        foundBooks.append(i)
                         count += 1
-                        correctInput = False
-                        while not correctInput:
-                            inputSearch = input("Do you want to search again? (yes or no): ")
-                            if inputSearch == "yes":
-                                inputSearch = ""
-                                correctInput = not correctInput
-                            elif inputSearch == "no":
-                                inputSearch = "5"
-                                correctInput = not correctInput
-                            else:
-                                print("Wrong input")
                 if count == 0:
                     print("Nothing found")
-                    inputSearch = ""
-            elif inputSearch == "3":
-                searchBook = input("Which book are you looking for by author age? ")
+                return foundBooks
+            elif choice == "3":
+                searchBook = input("Which book are you looking for by author age? enter nothing to exit. ")
                 count = 0
+                if searchBook == "":
+                    break
                 for i in self.__Books:
                     if searchBook == str(i.getAuthor().getAge()):
                         print(i)
+                        foundBooks.append(i)
                         count += 1
-                        
-                        correctInput = False
-                        while not correctInput:
-                            inputSearch = input("Do you want to search again? (yes or no): ")
-                            if inputSearch == "yes":
-                                inputSearch = ""
-                                correctInput = not correctInput
-                            elif inputSearch == "no":
-                                inputSearch = "5"
-                                correctInput = not correctInput
-                            else:
-                                print("Wrong input")
                 if count == 0:
                     print("Nothing found")
-                    inputSearch = ""
-            elif inputSearch == "4":
-                searchBook = input("Which book are you looking for by ISBN? ")
+                return foundBooks
+            elif choice == "4":
+                searchBook = input("Which book are you looking for by ISBN? enter nothing to exit. ")
                 count = 0
+                if searchBook == "":
+                    break
                 for i in self.__Books:
                     if searchBook in i.getISBN():
                         print(i)
+                        foundBooks.append(i)
                         count += 1
-
-                        correctInput = False
-                        while not correctInput:
-                            inputSearch = input("Do you want to search again? (yes or no): ")
-                            if inputSearch == "yes":
-                                inputSearch = ""
-                                correctInput = not correctInput
-                            elif inputSearch == "no":
-                                inputSearch = "5"
-                                correctInput = not correctInput
-                            else:
-                                print("Wrong input")
                 if count == 0:
                     print("Nothing found")
-                    inputSearch = ""
-            elif inputSearch == "5":
-                start_keuze_gebruiker = "5"
+                return foundBooks
+            elif choice == "5":
+                running = False
             else:
-                inputSearch = input("Try again: ")
+                choice = input("Try again: ")
+

@@ -2,6 +2,7 @@ from Catalog import Catalog
 catalog = Catalog()
 # Dit is hoe je een loanId kan pakken van een user
 # user = catalog.returnUsers()[1].getBookLoans()[0].getUserId()
+catalog.reserveer_boek(catalog.returnUsers()[0], catalog.returnUsers()[0].getUserId())
 start_reservering = True
 start_reservering_gebruiker = True
 start_keuze = None
@@ -36,15 +37,15 @@ while start_reservering or start_keuze == "0":
                 while start_keuze_gebruiker == "1":
                     print("***** Bekijk boeken *****")
                     catalog.printBooks()
-                    start_keuze_gebruiker = input("Press enter to continue")
+                    start_keuze_gebruiker = ""
                 while start_keuze_gebruiker == "2":
                     print("***** Filter boeken *****")
                     catalog.filter()
-                    start_keuze = input("Press enter to continue.")
+                    start_keuze_gebruiker = ""
                 while start_keuze_gebruiker == "3":
                     print("***** Reserveer een boek *****")
-                    catalog.reserveer_boek(catalog.loggedInUser, catalog.loggedInUser.persoonId, catalog.loggedInUser.loanId)
-                    start_keuze = input("Press enter to continue.")
+                    catalog.reserveer_boek(catalog.loggedInUser, catalog.loggedInUser.getUserId())
+                    start_keuze_gebruiker = input("Press 5 to go back")
                 if start_keuze_gebruiker == "4":
                     catalog.loggedInUser = None
                     start_keuze = "0"
