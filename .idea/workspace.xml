@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661631ab-4d6d-4341-8c03-ffaeda181825" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Book.py" beforeDir="false" afterPath="$PROJECT_DIR$/Book.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAdministration.csv" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAdministration.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Person.py" beforeDir="false" afterPath="$PROJECT_DIR$/Person.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loanAdministration.py" beforeDir="false" afterPath="$PROJECT_DIR$/loanAdministration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loanItem.py" beforeDir="false" afterPath="$PROJECT_DIR$/loanItem.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
