@@ -1,10 +1,11 @@
 from Author import Author
 class Book:
-    def __init__(self, bookId, title, authorName, authorAge, ISBN):
+    def __init__(self, bookId, title, authorName, authorAge, ISBN, aantal = 3):
         self.__bookId = bookId
         self.__title = title
         self.__author = Author(authorName, authorAge)
         self.__ISBN = ISBN
+        self.__aantal = aantal
 
     def getTitle(self):
         return self.__title
