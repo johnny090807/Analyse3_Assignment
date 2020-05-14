@@ -35,4 +35,4 @@ class Book:
         self.__aantal = aantal
 
     def __str__(self):
-        return self.__title + "\n" + self.__author.getName() + "\n" + self.__author.getName() + "\n" + self.__ISBN + "\n" + self.__aantal
+        return self.__title + "\n" + self.__author.getName() + "\n" + self.__author.getName() + "\n" + self.__ISBN + "\n" + str(self.__aantal)

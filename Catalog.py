@@ -40,33 +40,32 @@ class Catalog:
         except:
             books = self.filter()
 
-        for i in self.__Books:
-            if books[0].getTitle == i.getTitle or books[0].getISBN == i.getISBN:
-                print(i)
-                reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
-                if reserveren_boek == "1":
-                    if books[0].getAantal > 0:
-                        i.setAantal = i.getAantal - 1
-                        with open('Catalog.csv', mode='w') as csv_file:
-                            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
-                            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
+        if reserveren_boek == "1":
+            if books[0].getAantal() > 0:
+                for x in self.__Books:
+                    if x.getTitle() == books[0].getTitle() and x.getBookId() == books[0].getBookId():
+                        x.setAantal(x.getAantal() - 1)
+                with open('Catalog.csv', mode='w') as csv_file:
+                    fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
+                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-                            writer.writeheader()
-                            for i in self.__Books:
-                                writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                                'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
-                        #Add the book to Person localy
-                        loggedinUser.addBookLoan(books[0].getBookId)
-                        #Add the book to Person in csv
-                        with open(r'LoanAdministration.csv', 'a') as addLoan:
-                            writer = csv.writer(addLoan)
-                            writer.writerow({'userId': userId, 'loanId': books[0].getBookId})
-                        print("Het boek is toegevoegd aan uw geleende boeken")
-                else:
-                   start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+                    writer.writeheader()
+                    for i in self.__Books:
+                        writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
+                                        'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
+                #Add the book to Person localy
+                loggedinUser.addBookLoan(books[0].getBookId())
+                #Add the book to Person in csv
+                with open(r'LoanAdministration.csv', 'a') as addLoan:
+                    writer = csv.writer(addLoan)
+                    writer.writerow({books[0].getBookId(), userId})
+                print("Het boek is toegevoegd aan uw geleende boeken")
             else:
-                print("titel bestaat niet")
-                start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu")
+                print("Het boek is niet meer op vooraad")
+        else:
+            start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+  
 
     def fillAdministration(self):
         with open('LoanAdministration.csv', mode='r') as csv_file:
