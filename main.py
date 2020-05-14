@@ -2,7 +2,7 @@ from Catalog import Catalog
 catalog = Catalog()
 # Dit is hoe je een loanId kan pakken van een user
 # user = catalog.returnUsers()[1].getBookLoans()[0].getUserId()
-
+catalog.printUsers()
 start_reservering = True
 start_reservering_gebruiker = True
 start_keuze = None
@@ -36,11 +36,13 @@ while start_reservering or start_keuze == "0":
 
                 while start_keuze_gebruiker == "1":
                     print("***** Bekijk boeken *****")
-                    print("lijst met boeken")
+                    catalog.printBooks()
+                    start_keuze = "0"
                     start_keuze_gebruiker = input("Press enter to continue")
                 while start_keuze_gebruiker == "2":
                     print("***** Filter boeken *****")
                     catalog.filter()
+                    start_keuze = "0"
                 while start_keuze_gebruiker == "3":
                     print("***** Reserveer een boek *****")
                 #     Boek moet hier nog gereserveerd kunnen worden
@@ -49,7 +51,7 @@ while start_reservering or start_keuze == "0":
                     start_keuze = "0"
                     start_reservering_gebruiker = False
         # Menu als je ingelogd bent als admin
-        elif catalog.loggedInUser.isAdmin():
+        elif catalog.loggedInUser.isAdmin() is True:
                 while start_reservering_gebruiker:
                     print("***** Reserverings systeem *****")
                     print("***** Welkom " + catalog.loggedInUser.getFirstName() + " *****")
@@ -60,8 +62,8 @@ while start_reservering or start_keuze == "0":
 
                     while start_keuze_gebruiker == "1":
                         print("***** Bekijk boeken *****")
-                        print("lijst met boeken")
-                        start_keuze_gebruiker = input("0) Terug")
+                        catalog.printBooks()
+                        start_keuze = input("Press enter to continue.")
                     while start_keuze == "2":
                         print("***** Filter boeken  *****")
                         catalog.filter()
