@@ -69,7 +69,7 @@ class Catalog:
         with open('Catalog.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"]))
+                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"], row["aantal"]))
 
     def fillUsers(self):
         with open('Person.csv', mode='r') as csv_file:
@@ -108,7 +108,7 @@ class Catalog:
             writer.writeheader()
             for i in self.__Books:
                 writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN()})
+                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]

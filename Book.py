@@ -28,5 +28,11 @@ class Book:
     def getBookId(self):
         return self.__bookId
 
+    def getAantal(self):
+        return self.__aantal
+    
+    def setAantal(self, aantal):
+        self.__aantal = aantal
+
     def __str__(self):
         return self.__title + " " + self.__author.getName() + " " + self.__author.getName() + " " + self.__ISBN
