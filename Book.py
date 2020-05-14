@@ -5,7 +5,7 @@ class Book:
         self.__title = title
         self.__author = Author(authorName, authorAge)
         self.__ISBN = ISBN
-        self.__aantal = aantal
+        self.__aantal = int(aantal)
 
     def getTitle(self):
         return self.__title
