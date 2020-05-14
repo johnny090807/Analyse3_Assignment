@@ -191,8 +191,9 @@ class Catalog:
                 count = 0
                 if searchBook == "":
                     break
+
                 for i in self.__Books:
-                    if searchBook in i.getTitle():
+                    if searchBook == i.getTitle():
                         print(i)
                         foundBooks.append(i)
                         count += 1
@@ -231,7 +232,7 @@ class Catalog:
                 if searchBook == "":
                     break
                 for i in self.__Books:
-                    if searchBook in i.getISBN():
+                    if searchBook == i.getISBN():
                         print(i)
                         foundBooks.append(i)
                         count += 1
