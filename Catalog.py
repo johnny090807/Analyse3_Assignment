@@ -1,13 +1,13 @@
 import csv
 from Book import Book
 from Person import Person
-from loanAdministration import LoanAdministration
+# from loanAdministration import LoanAdministration
 
 class Catalog:
     def __init__(self):
         self.__Books = []
         self.__Users = []
-        self.__Administration = []
+        # self.__Administration = []
         self.fillCatalog()
         self.fillUsers()
         self.loggedInUser = None
@@ -32,11 +32,11 @@ class Catalog:
         for user in self.__Users:
             print(user.getUserId(), user.getFirstName(), "|", user.getLastName())
 
-    def fillAdministration(self):
-        with open('LoanAdministration.csv', mode='r') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            for row in csv_reader:
-                self.__Administration.append(LoanAdministration(row['userId'], row['loanId']))
+    # def fillAdministration(self):
+    #     with open('LoanAdministration.csv', mode='r') as csv_file:
+    #         csv_reader = csv.DictReader(csv_file)
+    #         for row in csv_reader:
+    #             self.__Administration.append(LoanAdministration(row['userId'], row['loanId']))
 
     def fillCatalog(self):
         with open('Catalog.csv', mode='r') as csv_file:

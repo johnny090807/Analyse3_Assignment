@@ -1,4 +1,4 @@
-from loanAdministration import LoanAdministration
+# from loanAdministration import LoanAdministration
 import csv
 
 class Person:
@@ -10,7 +10,7 @@ class Person:
         self.__password = password
         self.__admin = admin
         self.__bookLoans = []
-        self.fillBookLoans()
+        # self.fillBookLoans()
 
     def getFirstName(self):
         return self.__firstName
@@ -51,9 +51,9 @@ class Person:
     def addBookLoan(self, bookId):
         self.__bookLoans.append(bookId)
 
-    def fillBookLoans(self):
-        with open('LoanAdministration.csv', mode='r') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            for row in csv_reader:
-                if row['userId'] == self.__userId:
-                    self.__bookLoans.append(LoanAdministration(row['userId'], row['loanId']))
+    # def fillBookLoans(self):
+    #     with open('LoanAdministration.csv', mode='r') as csv_file:
+    #         csv_reader = csv.DictReader(csv_file)
+    #         for row in csv_reader:
+    #             if row['userId'] == self.__userId:
+    #                 self.__bookLoans.append(LoanAdministration(row['userId'], row['loanId']))
