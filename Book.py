@@ -29,6 +29,3 @@ class Book:
 
     def __str__(self):
         return self.__title + " " + self.__author.getName() + " " + self.__author.getName() + " " + self.__ISBN
-        
-    def printBook(self):
-        print(self.__title + "\n" + self.__author + "\n" + self.__ISBN + "\n")

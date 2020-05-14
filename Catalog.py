@@ -11,7 +11,7 @@ class Catalog:
         self.fillCatalog()
         self.fillUsers()
         self.loggedInUser = None
-
+        
     def returnBooks(self):
         return self.__Books
 
@@ -30,7 +30,27 @@ class Catalog:
 
     def printUsers(self):
         for user in self.__Users:
-            print(user.getUserId(), user.getFirstName(), "|", user.getLastName())
+            print(user)
+
+    def reserveer_boek(self, loggedinUser, userId):
+        titel_boek = input("Zoek boek op titel of ISBN:")
+        for i in self.__Books:
+            if titel_boek == i.getTitle or titel_boek == i.getISBN:
+                print(i)
+                reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
+                if reserveren_boek == "1":
+                    #Add the book to Person localy
+                    loggedinUser.addBookToLoaned(i.getLoanId)
+                    #Add the book to Person in csv
+                    with open(r'LoanAdministration.csv', 'a') as addLoan:
+                        writer = csv.writer(addLoan)
+                        writer.writerow({'userId': userId, 'loanId': loanId})
+                    print("Het boek is toegevoegd aan uw geleende boeken")
+                else:
+                   start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+            else:
+                print("titel bestaat niet")
+                start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu")
 
     def fillAdministration(self):
         with open('LoanAdministration.csv', mode='r') as csv_file:
@@ -151,22 +171,28 @@ class Catalog:
             self.login()
 
     def filter(self):
+        correctInput = False
+        foundBooks = []
         searchTypes = ['Title', 'Author name', 'Author age', 'ISBN']
         for i in range(len(searchTypes)):
             print("Press", i + 1, "to search for", searchTypes[i])
+        print("Press 5 to go back")
         inputSearch = ""
         while inputSearch == "" or inputSearch == "Try again":
             inputSearch = input("")
-            if inputSearch == "1":
+            choice = inputSearch
+            if choice == "1":
                 searchBook = input("Which book are you looking for by title? ")
                 count = 0
                 for i in self.__Books:
                     if searchBook in i.getTitle():
                         print(i)
+                        foundBooks.append(i)
                         count += 1
                 if count == 0:
                     print("Nothing found")
-            elif inputSearch == "2":
+                    inputSearch = ""
+            elif choice == "2":
                 searchBook = input("Which book are you looking for by author name? ")
                 count = 0
                 for i in self.__Books:
@@ -175,7 +201,8 @@ class Catalog:
                         count += 1
                 if count == 0:
                     print("Nothing found")
-            elif inputSearch == "3":
+                    inputSearch = ""
+            elif choice == "3":
                 searchBook = input("Which book are you looking for by author age? ")
                 count = 0
                 for i in self.__Books:
@@ -184,7 +211,8 @@ class Catalog:
                         count += 1
                 if count == 0:
                     print("Nothing found")
-            elif inputSearch == "4":
+                    inputSearch = ""
+            elif choice == "4":
                 searchBook = input("Which book are you looking for by ISBN? ")
                 count = 0
                 for i in self.__Books:
@@ -193,5 +221,17 @@ class Catalog:
                         count += 1
                 if count == 0:
                     print("Nothing found")
-            else:
-                inputSearch = input("Try again: ")
+                    inputSearch = ""
+            elif choice == "5":
+                start_keuze_gebruiker = "5"
+
+            while not correctInput:
+                inputSearch = input("Do you want to search again? (yes or no): ")
+                if inputSearch == "yes":
+                    inputSearch = ""
+                    correctInput = not correctInput
+                elif inputSearch == "no":
+                    inputSearch = "5"
+                    correctInput = not correctInput
+                else:
+                    print("Wrong input")
