@@ -1,5 +1,5 @@
 import csv
-from Person import Person
+from person import Person
 from Catalog import Catalog
 from Book import Book
 catalog = Catalog()

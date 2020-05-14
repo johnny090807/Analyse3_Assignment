@@ -1,6 +1,6 @@
 import csv
 from Book import Book
-from Person import Person
+from person import Person
 from loanAdministration import LoanAdministration
 
 class Catalog:
