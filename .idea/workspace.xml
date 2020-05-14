@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661631ab-4d6d-4341-8c03-ffaeda181825" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/LoanAdministration.csv" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAdministration.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Catalog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Catalog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person.py" beforeDir="false" afterPath="$PROJECT_DIR$/Person.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loanAdministration.py" beforeDir="false" afterPath="$PROJECT_DIR$/loanAdministration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +25,7 @@
   <component name="ProjectId" id="1ZGVC15Lw832bZrxjl2QzTYOJOq" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
