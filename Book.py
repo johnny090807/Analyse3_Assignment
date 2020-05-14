@@ -1,6 +1,8 @@
 from Author import Author
+
 class Book:
-    def __init__(self, title, authorName, authorAge, ISBN):
+    def __init__(self, bookId, title, authorName, authorAge, ISBN):
+        self.__bookId = bookId
         self.__title = title
         self.__author = Author(authorName, authorAge)
         self.__ISBN = ISBN
@@ -23,5 +25,8 @@ class Book:
     def setISBN(self, isbn):
         self.__ISBN = isbn
 
-    def printBook(self):
-        print(self.__title + "\n" + self.__author + "\n" + self.__ISBN + "\n")
+    def getBookId(self):
+        return self.__bookId
+
+    def __str__(self):
+        return self.__title + " " + self.__author.getName() + " " + self.__author.getName() + " " + self.__ISBN
