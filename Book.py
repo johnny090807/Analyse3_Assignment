@@ -1,6 +1,7 @@
 
 from Author import Author
 
+nice = 0
 
 class Book:
     def __init__(self, bookId, title, authorName, authorAge, ISBN):
