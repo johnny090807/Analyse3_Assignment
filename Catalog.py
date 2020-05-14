@@ -45,14 +45,15 @@ class Catalog:
                 print(i)
                 reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
                 if reserveren_boek == "1":
-                    loanId = 0
-                    #Add the book to Person localy
-                    loggedinUser.addBookLoan(i.getLoanId)
-                    #Add the book to Person in csv
-                    with open(r'LoanAdministration.csv', 'a') as addLoan:
-                        writer = csv.writer(addLoan)
-                        writer.writerow({'userId': userId, 'loanId': loanId})
-                    print("Het boek is toegevoegd aan uw geleende boeken")
+                    if books[0].aantal > 0:
+                        
+                        #Add the book to Person localy
+                        loggedinUser.addBookLoan(books[0].getBookId)
+                        #Add the book to Person in csv
+                        with open(r'LoanAdministration.csv', 'a') as addLoan:
+                            writer = csv.writer(addLoan)
+                            writer.writerow({'userId': userId, 'loanId': books[0].getBookId})
+                        print("Het boek is toegevoegd aan uw geleende boeken")
                 else:
                    start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
             else:
@@ -69,7 +70,7 @@ class Catalog:
         with open('Catalog.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"]))
+                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"], row["aantal"]))
 
     def fillUsers(self):
         with open('Person.csv', mode='r') as csv_file:
@@ -108,7 +109,7 @@ class Catalog:
             writer.writeheader()
             for i in self.__Books:
                 writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN()})
+                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]
