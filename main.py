@@ -1,5 +1,4 @@
 from Catalog import Catalog
-nice = 0
 catalog = Catalog()
 # Dit is hoe je een loanId kan pakken van een user
 #user = catalog.returnUsers()[1].getBookLoans()[0].getLoanId()

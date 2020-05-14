@@ -1,4 +1,3 @@
-nice = 0
 import csv
 from Book import Book
 from Person import Person
