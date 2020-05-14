@@ -1,6 +1,7 @@
 # from loanAdministration import LoanAdministration
 import csv
 
+
 class Person:
     def __init__(self, userId, firstName, lastName, username, password, admin=False):
         self.__userId = userId
