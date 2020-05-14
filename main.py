@@ -40,9 +40,11 @@ while start_reservering or start_keuze == "0":
                 while start_keuze_gebruiker == "2":
                     print("***** Filter boeken *****")
                     catalog.filter()
+                    start_keuze = input("Press enter to continue.")
                 while start_keuze_gebruiker == "3":
                     print("***** Reserveer een boek *****")
                     catalog.reserveer_boek(catalog.loggedInUser, catalog.loggedInUser.persoonId, catalog.loggedInUser.loanId)
+                    start_keuze = input("Press enter to continue.")
                 if start_keuze_gebruiker == "4":
                     catalog.loggedInUser = None
                     start_keuze = "0"
