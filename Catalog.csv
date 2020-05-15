@@ -1,6 +1,6 @@
-bookId,title,authorName,authorAge,ISBN,aantal
+bookId,title,authorName,authorAge,ISBN
 
-0,Forest Gump,John Klees,21,00223223,2
+0,Forest Gump,John Klees,21,00223223
 
-1,Forest Gump,John Klees,21,002,3
+1,Forest Gump,John Klees,21,002
 

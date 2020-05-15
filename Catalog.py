@@ -1,15 +1,20 @@
+
 import csv
 from Book import Book
 from Person import Person
 from loanAdministration import LoanAdministration
+from loanItem import loanItem
 
 class Catalog:
     def __init__(self):
         self.__Books = []
         self.__Users = []
         self.__Administration = []
+        self.__loanItems = []
         self.fillCatalog()
         self.fillUsers()
+        self.fillAdministration()
+        self.fillLoanItems()
         self.loggedInUser = None
         
     def returnBooks(self):
@@ -42,29 +47,40 @@ class Catalog:
 
         reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
         if reserveren_boek == "1":
-            if books[0].getAantal() > 0:
-                for x in self.__Books:
-                    if x.getTitle() == books[0].getTitle() and x.getBookId() == books[0].getBookId():
-                        x.setAantal(x.getAantal() - 1)
-                with open('Catalog.csv', mode='w') as csv_file:
-                    fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
-                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            for i in self.__loanItems:
+                if loanItem.getBookId == books[0].getBookId:
+                    for x in self.__Books:
+                        if x.getTitle() == books[0].getTitle() and x.getBookId() == books[0].getBookId():
+                            i.reduceAantal()
+                    with open('Catalog.csv', mode='w') as csv_file:
+                        fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN']
+                        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-                    writer.writeheader()
-                    for i in self.__Books:
-                        writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                        'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
-                #Add the book to Person localy
-                loggedinUser.addBookLoan(books[0].getBookId())
-                #Add the book to Person in csv
-                with open(r'LoanAdministration.csv', 'a') as addLoan:
-                    writer = csv.writer(addLoan)
-                    writer.writerow({books[0].getBookId(), userId})
-                print("Het boek is toegevoegd aan uw geleende boeken")
+                        writer.writeheader()
+                        for y in self.__Books:
+                            writer.writerow({'bookId': y.getBookId(), 'title': y.getTitle(), 'authorName': y.getAuthor().getName(),
+                                            'authorAge': y.getAuthor().getAge(), 'ISBN': y.getISBN(), 'aantal': y.getAantal()})
+                    
+                    with open('LoanItems.csv', mode='w') as loanitemscsv:
+                        fieldnames = ['bookId', 'aantal']
+                        writer = csv.DictWriter(loanitemscsv, fieldnames=fieldnames)
+
+                        writer.writeheader()
+                        for p in self.__loanItems:
+                            writer.writerow({'bookId': p.getBookId(), 'aantal': p.getAantal()})
+
+                    #Add the book to Person localy
+                    loggedinUser.addBookLoan(books[0].getBookId())
+                    
+                    #Add the book to Person in csv
+                    with open(r'LoanAdministration.csv', 'a') as addLoan:
+                        writer = csv.writer(addLoan)
+                        writer.writerow({books[0].getBookId(), userId})
+                    print("Het boek is toegevoegd aan uw geleende boeken")
+                else:
+                    print("Het boek is niet meer op vooraad")
             else:
-                print("Het boek is niet meer op vooraad")
-        else:
-            start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+                start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
   
 
     def fillAdministration(self):
@@ -72,12 +88,18 @@ class Catalog:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
                 self.__Administration.append(LoanAdministration(row['userId'], row['loanId']))
+    
+    def fillLoanItems(self):
+        with open('LoanItems.csv', mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                self.__loanItems.append(loanItem(row['bookId'], row['aantal']))
 
     def fillCatalog(self):
         with open('Catalog.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"], row["aantal"]))
+                self.__Books.append(Book(row["bookId"], row["title"], row["authorName"], row["authorAge"], row["ISBN"]))
 
     def fillUsers(self):
         with open('Person.csv', mode='r') as csv_file:
@@ -108,15 +130,24 @@ class Catalog:
             bookId = int(self.__Books[-1].getBookId()) + 1
         except:
             bookId = 0
-        self.__Books.append(Book(bookId, array[0], array[1], array[2], array[3], array[4]))
+        self.__Books.append(Book(bookId, array[0], array[1], array[2], array[3]))
+        self.__loanItems.append(loanItem(bookId,array[4]))
+        with open('LoanItems.csv', mode='w') as csv_file:
+            fieldnames = ['bookId', 'aantal']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for i in self.__Books:
+                writer.writerow({'bookId': i.getBookId(), 'aantal': i.getAantal()})
+
         with open('Catalog.csv', mode='w') as csv_file:
-            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN', 'aantal']
+            fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             writer.writeheader()
             for i in self.__Books:
                 writer.writerow({'bookId': i.getBookId(), 'title': i.getTitle(), 'authorName': i.getAuthor().getName(),
-                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN(), 'aantal': i.getAantal()})
+                                 'authorAge': i.getAuthor().getAge(), 'ISBN': i.getISBN()})
 
     def addPerson(self, admin = False):
         array = ["", "", "", "", admin]
