@@ -1,4 +1,8 @@
-userId,firstName,lastName,username,password,admin
-0,ADMIN,asdasgsa,admin,geheim,True
-1,USER,efsef,user,geheim,False
-2,john,klees,admin2,geheim2,True
+userId,firstName,lastName,username,password,admin
+0,ADMIN,asdasgsa,admin,geheim,True
+1,USER,efsef,user,geheim,False
+2,john,klees,admin2,geheim2,True
+3,Reynethan,Leon,RBL,geheim,False
+4,Rey,Leo,ErBeeEl,geheim,False
+5,Kacper,Kucharski,CrashPol,geheim,False
+6,Rayn,Leon,AdminRights,geheim,True

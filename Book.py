@@ -28,4 +28,4 @@ class Book:
         return self.__bookId
 
     def __str__(self):
-        return self.__title + "\n" + self.__author.getName() + "\n" + self.__author.getName() + "\n" + self.__ISBN + "\n" 
+        return self.__title + "\n" + self.__author.getName() + "\n" + self.__author.getAge() + "\n" + self.__ISBN + "\n" 

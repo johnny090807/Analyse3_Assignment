@@ -48,39 +48,35 @@ class Catalog:
         reserveren_boek = input("1) Reserveer het boek \n0) Reserveer het boek niet")
         if reserveren_boek == "1":
             for i in self.__loanItems:
-                if loanItem.getBookId == books[0].getBookId:
-                    for x in self.__Books:
-                        if x.getTitle() == books[0].getTitle() and x.getBookId() == books[0].getBookId():
-                            i.reduceAantal()
-                    with open('Catalog.csv', mode='w') as csv_file:
-                        fieldnames = ['bookId', 'title', 'authorName', 'authorAge', 'ISBN']
-                        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                if i.getBookId() == books[0].getBookId():
+                    if i.getAantal() > 0:
+                        for x in self.__Books:
+                            if x.getTitle() == books[0].getTitle() and x.getBookId() == books[0].getBookId():
+                                i.reduceAantal()
 
-                        writer.writeheader()
-                        for y in self.__Books:
-                            writer.writerow({'bookId': y.getBookId(), 'title': y.getTitle(), 'authorName': y.getAuthor().getName(),
-                                            'authorAge': y.getAuthor().getAge(), 'ISBN': y.getISBN(), 'aantal': y.getAantal()})
-                    
-                    with open('LoanItems.csv', mode='w') as loanitemscsv:
-                        fieldnames = ['bookId', 'aantal']
-                        writer = csv.DictWriter(loanitemscsv, fieldnames=fieldnames)
+                        
+                        with open('LoanItems.csv', mode='w') as loanitemscsv:
+                            fieldnames = ['bookId', 'aantal']
+                            writer = csv.DictWriter(loanitemscsv, fieldnames=fieldnames)
 
-                        writer.writeheader()
-                        for p in self.__loanItems:
-                            writer.writerow({'bookId': p.getBookId(), 'aantal': p.getAantal()})
+                            writer.writeheader()
+                            for p in self.__loanItems:
+                                writer.writerow({'bookId': p.getBookId(), 'aantal': p.getAantal()})
 
-                    #Add the book to Person localy
-                    loggedinUser.addBookLoan(books[0].getBookId())
-                    
-                    #Add the book to Person in csv
-                    with open(r'LoanAdministration.csv', 'a') as addLoan:
-                        writer = csv.writer(addLoan)
-                        writer.writerow({books[0].getBookId(), userId})
-                    print("Het boek is toegevoegd aan uw geleende boeken")
-                else:
-                    print("Het boek is niet meer op vooraad")
-            else:
-                start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+                        #Add the book to Person localy
+                        loggedinUser.addBookLoan(books[0].getBookId())
+                        
+                        #Add the book to Person in csv
+                        with open(r'LoanAdministration.csv', 'a') as addLoan:
+                            writer = csv.writer(addLoan)
+                            writer.writerow({books[0].getBookId(), userId})
+                        print("Het boek is toegevoegd aan uw geleende boeken")
+                    else:
+                        print("Het boek is niet meer op vooraad")
+        else:
+            start_keuze_gebruiker = input("3) Zoek opnieuw \n5) Terug naar menu") 
+            if start_keuze_gebruiker == "3":
+                self.reserveer_boek(loggedinUser, userId)
   
 
     def fillAdministration(self):
@@ -137,7 +133,7 @@ class Catalog:
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             writer.writeheader()
-            for i in self.__Books:
+            for i in self.__loanItems:
                 writer.writerow({'bookId': i.getBookId(), 'aantal': i.getAantal()})
 
         with open('Catalog.csv', mode='w') as csv_file:
@@ -232,7 +228,7 @@ class Catalog:
                     break
 
                 for i in self.__Books:
-                    if searchBook == i.getTitle():
+                    if searchBook in i.getTitle():
                         print(i)
                         foundBooks.append(i)
                         count += 1
